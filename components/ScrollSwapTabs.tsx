@@ -164,7 +164,7 @@ export default function TabScroller() {
 
   return (
     <section id="services" className="relative bg-bg">
-      <div className="h-[400vh] relative">
+      <div className="h-[350vh] relative">
         <div
           ref={containerRef}
           className="sticky top-20 max-w-7xl mx-auto px-6"
@@ -189,7 +189,7 @@ export default function TabScroller() {
                   });
                   setTimeout(() => (isClickingRef.current = false), 800);
                 }}
-                className={`relative pb-2 text-sm font-semibold transition ${
+                className={`relative pb-2 text-[8px] md:text-sm font-semibold transition ${
                   i === active
                     ? "text-primary"
                     : "text-neutral hover:text-secondary"
@@ -206,48 +206,51 @@ export default function TabScroller() {
             ))}
           </div>
 
-          {/* Cards */}
-          <div className="relative w-full min-h-[480px] overflow-hidden bg-bright/10 rounded-sm mt-[-20px]">
-            <AnimatePresence custom={direction} mode="popLayout">
-              <motion.div
-                key={tabs[active].id}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                className="absolute inset-0 grid md:grid-cols-3 gap-6 p-6"
-              >
-                {tabs[active].cards.map((c) => (
-                  <div
-                    key={c.title}
-                    className="relative bg-white border border-primary/20 rounded-lg shadow-sm overflow-hidden group hover:shadow-md transition"
-                  >
-                    <Image
-                      src={c.img}
-                      alt={c.title}
-                      width={400}
-                      height={440}
-                      className="h-[450px] w-full object-cover"
-                    />
-                    {/* Overlay for text at bottom with glassmorphism */}
-                    <div
-                      className="absolute bottom-0 left-0 right-0 
-             bg-white/40 dark:bg-black/30 
-             backdrop-blur-md 
-             border-t border-white/30 dark:border-neutral/50
-             p-4 -mt-[50px]"
-                    >
-                      <h4 className="text-lg font-semibold text-primary">
-                        {c.title}
-                      </h4>
-                      <p className="text-sm text-foreground">{c.desc}</p>
-                    </div>
-                  </div>
-                ))}
-              </motion.div>
-            </AnimatePresence>
+         {/* ✅ Responsive Cards */}
+<div className="relative w-full min-h-[400px] sm:min-h-[480px] overflow-hidden bg-bright/10 rounded-sm mt-[-20px]">
+  <AnimatePresence custom={direction} mode="popLayout">
+    <motion.div
+      key={tabs[active].id}
+      custom={direction}
+      variants={variants}
+      initial="enter"
+      animate="center"
+      exit="exit"
+      className="absolute inset-0 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-6 p-4 sm:p-6"
+    >
+      {tabs[active].cards.map((c) => (
+        <div
+          key={c.title}
+          className="relative bg-white border border-primary/20 rounded-lg shadow-sm overflow-hidden group hover:shadow-md transition"
+        >
+          <Image
+            src={c.img}
+            alt={c.title}
+            width={400}
+            height={440}
+            className="h-[220px] sm:h-[300px] md:h-[450px] w-full object-cover rounded-lg"
+          />
+          {/* ✅ Glassmorphism Overlay */}
+          <div
+            className="absolute bottom-0 left-0 right-0 
+                       bg-white/40 dark:bg-black/30 
+                       backdrop-blur-md 
+                       border-t border-white/30 dark:border-neutral/50
+                       p-2 sm:p-3 md:p-4"
+          >
+            <h4 className="text-xs sm:text-sm md:text-lg font-semibold text-primary">
+              {c.title}
+            </h4>
+            <p className="text-[10px] sm:text-xs md:text-sm text-foreground">
+              {c.desc}
+            </p>
           </div>
+        </div>
+      ))}
+    </motion.div>
+  </AnimatePresence>
+</div>
+
         </div>
       </div>
     </section>
