@@ -87,7 +87,7 @@ export default function Compliance() {
   const ActiveIcon = TABS[active].Icon ?? ShieldCheck;
 
   return (
-    <section className="bg-bg py-20">
+    <section id="compliance" className="bg-bg py-20">
       <div className="max-w-7xl mx-auto px-6">
         {/* header */}
         <p className="text-sm font-semibold text-accent mb-2">Compliance</p>

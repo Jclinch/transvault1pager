@@ -34,7 +34,7 @@ const PARTNERS: Partner[] = [
 
 export default function Partners() {
     return (
-        <section className="bg-bg py-20 border-t border-neutral">
+        <section id="partners" className="bg-bg pt-20 border-t border-neutral">
             <div className="max-w-7xl mx-auto px-6">
                 {/* Header & Intro (left aligned) */}
                 <p className="text-sm font-semibold text-accent mb-2">Partners</p>
@@ -100,7 +100,7 @@ export default function Partners() {
                 </div>
 
                 {/* CTA (centered) */}
-                <div className="text-center">
+                <div id="contact" className="text-center">
                     <a
                         href="mailto:partnerships@transvault.xyz"
                         className="inline-block px-6 py-3 bg-accent text-white font-semibold rounded-md shadow hover:shadow-lg transition"

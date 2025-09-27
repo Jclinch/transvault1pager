@@ -39,8 +39,10 @@ export default function Contact() {
     }
   };
 
+
+
   return (
-    <section className="py-20 bg-gray-50 dark:bg-[#0F0C10]">
+    <section id="contact" className="py-20 bg-gray-50 dark:bg-[#0F0C10]">
       <div className="max-w-4xl mx-auto px-6 lg:px-8">
         {/* ✅ Animated heading */}
         <motion.h2

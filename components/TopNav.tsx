@@ -85,11 +85,6 @@
 //   );
 // }
 
-
-
-
-
-
 // ---------
 // components/TopNav.tsx
 "use client";
@@ -157,21 +152,28 @@ export default function TopNav() {
         <NavigationMenu className="hidden md:block">
           <NavigationMenuList className="flex gap-6">
             <NavigationMenuItem>
-              <Link href="/services" legacyBehavior passHref>
+              <Link href="/#services" legacyBehavior passHref>
                 <NavigationMenuLink className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
                   Services
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/resources" legacyBehavior passHref>
+              <Link href="/#features" legacyBehavior passHref>
                 <NavigationMenuLink className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
-                  Resources
+                  Features
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/contact" legacyBehavior passHref>
+              <Link href="/#partners" legacyBehavior passHref>
+                <NavigationMenuLink className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
+                  Partners
+                </NavigationMenuLink>
+              </Link>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <Link href="/#contact" legacyBehavior passHref>
                 <NavigationMenuLink className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
                   Contact
                 </NavigationMenuLink>

@@ -44,7 +44,7 @@ const RESOURCES: Resource[] = [
 
 export default function Resources() {
   return (
-    <section className="py-20 bg-gray-50 dark:bg-[#0F0C10]">
+    <section id="resources" className="py-20 bg-gray-50 dark:bg-[#0F0C10]">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         {/* ✅ Section heading */}
         <motion.h2

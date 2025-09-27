@@ -1,6 +1,3 @@
-
-
-
 //----------------------------------
 //components/ScrollSwapTabs.tsx
 "use client";
@@ -18,42 +15,43 @@ type TabData = {
 const tabs: TabData[] = [
   {
     id: "tab-1",
-    title: "Annual Payroll",
+    title: "Wallet Infrastructure for Licensed Entities",
     cards: [
       {
         title: "Payroll Core",
-        desc: "Automate salary disbursements",
+        desc: "Issue & manage business wallets for licensed IMTOs and SEC-regulated exchanges.",
         img: "/card/payroll1.png",
       },
       {
-        title: "Tax Reports",
-        desc: "Generate regulator-ready reports",
-        img: "/card/taxreport.jpg",
+        title: "Compliance",
+        desc: "Wallets are backed by pooled settlement accounts; daily reconciliation; transaction traceability; KYC & limits per CBN/SEC guidance",
+        img: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=800",
       },
+
       {
         title: "Payslip APIs",
-        desc: "Integrate slips to your app",
+        desc: "Technical APIs (create wallet, KYC attach, transaction webhooks)",
         img: "/card/payslip.jpg",
       },
     ],
   },
   {
     id: "tab-2",
-    title: "Main Payments",
+    title: "Payout Agent Services (Naira payouts)",
     cards: [
       {
         title: "Payout Agent",
-        desc: "Bank rails for Naira payouts",
+        desc: "Convert inbound foreign remittance to naira and execute payments to beneficiaries via bank transfer or cash-pay agent networks (when permitted).",
         img: "/card/payoutagent.jpg",
       },
       {
         title: "Instant Transfer",
-        desc: "Real-time transfers where supported",
+        desc: "Flow: funds received by IMTO partner → designated settlement account → Transvault instructs bank for payout → webhook notification to partner",
         img: "/card/instanttransfer.jpg",
       },
       {
-        title: "Settlement APIs",
-        desc: "Daily reconciliation endpoints",
+        title: "Compliance",
+        desc: "Compliance bullets: payouts to beneficiaries executed through designated accounts with Nigerian banks; remittances paid in naira per CBN IMTO rules",
         img: "/card/settlement.jpg",
       },
     ],
@@ -64,19 +62,40 @@ const tabs: TabData[] = [
     cards: [
       {
         title: "Daily Reconciliation",
-        desc: "Automated matching & reporting",
+        desc: "Automated daily reconciliation, audit logs, weekly/monthly regulator reports, GSI support",
         img: "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?q=80&w=800",
       },
       {
-        title: "Audit Trails",
-        desc: "Immutable ledger entries",
-        img: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=800",
+        title: "Records Reports",
+        desc: "Retention of transaction records for regulator requests",
+        img: "/card/taxreport.jpg",
       },
       {
         title: "Export",
         desc: "CSV, JSON exports for regulator",
         img: "/card/export.jpg",
       },
+    ],
+  },
+  {
+    id: "tab-4",
+    title: "Crypto Exchange Integration (for SEC-regulated entities)",
+    cards: [
+      {
+        title: "Wallet Connectors",
+        desc: "Wallet custody connectors and on-boarding workflows for SEC-registered exchanges; AML/KYC screening; segregation of client assets per SEC digital asset rules",
+        img: "https://images.unsplash.com/photo-1591696205602-2f950c417cb9?q=80&w=800",
+      },
+      {
+        title: "FX & Treasury Services (optional / partners)",
+        desc: "FX execution for partners via regulated treasury partners; pre-funding, hedging and netting services (note: provided through regulated partners; Transvault acts as technology & execution coordinator)",
+        img: "/card/taxreport.jpg",
+      },
+      // {
+      //   title: "Export",
+      //   desc: "CSV, JSON exports for regulator",
+      //   img: "/card/export.jpg",
+      // },
     ],
   },
 ];
@@ -144,9 +163,12 @@ export default function TabScroller() {
   };
 
   return (
-    <section className="relative bg-bg">
+    <section id="services" className="relative bg-bg">
       <div className="h-[400vh] relative">
-        <div ref={containerRef} className="sticky top-20 max-w-7xl mx-auto px-6">
+        <div
+          ref={containerRef}
+          className="sticky top-20 max-w-7xl mx-auto px-6"
+        >
           <p className="text-sm font-semibold text-accent mb-4 mr-[50px]">
             &nbsp;Service
           </p>
@@ -208,8 +230,14 @@ export default function TabScroller() {
                       height={440}
                       className="h-[450px] w-full object-cover"
                     />
-                    {/* Overlay for text at bottom */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-bg/90 via-bg/60 to-transparent p-4">
+                    {/* Overlay for text at bottom with glassmorphism */}
+                    <div
+                      className="absolute bottom-0 left-0 right-0 
+             bg-white/40 dark:bg-black/30 
+             backdrop-blur-md 
+             border-t border-white/30 dark:border-neutral/50
+             p-4 -mt-[50px]"
+                    >
                       <h4 className="text-lg font-semibold text-primary">
                         {c.title}
                       </h4>

@@ -16,7 +16,7 @@ export default function Footer() {
         className="max-w-7xl mx-auto px-6 lg:px-8 py-12"
       >
         {/* ✅ Footer Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-8">
           {/* Column 1 - Brand */}
           <div>
             <h3 className="text-lg font-bold text-primary mb-3">Transvault</h3>
@@ -32,7 +32,7 @@ export default function Footer() {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link
-                  href="/"
+                  href="/#hero"
                   className="hover:text-primary transition-colors"
                 >
                   Home
@@ -40,7 +40,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/services"
+                  href="/#services"
                   className="hover:text-primary transition-colors"
                 >
                   Services
@@ -48,49 +48,26 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/resources"
+                  href="/#features"
                   className="hover:text-primary transition-colors"
                 >
-                  Resources
+                  Features
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/contact"
+                  href="/#partners"
+                  className="hover:text-primary transition-colors"
+                >
+                  Partners
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/#contact"
                   className="hover:text-primary transition-colors"
                 >
                   Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          {/* Column 3 - Legal */}
-          <div>
-            <h4 className="text-sm font-semibold mb-3">Legal</h4>
-            <ul className="space-y-2 text-sm">
-              <li>
-                <Link
-                  href="/privacy"
-                  className="hover:text-primary transition-colors"
-                >
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/terms"
-                  className="hover:text-primary transition-colors"
-                >
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/compliance"
-                  className="hover:text-primary transition-colors"
-                >
-                  Compliance
                 </Link>
               </li>
             </ul>
@@ -103,8 +80,7 @@ export default function Footer() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-secondary dark:text-neutral">
           <p>© {new Date().getFullYear()} Transvault. All rights reserved.</p>
           <p>
-            Built with <span className="text-primary">Next.js</span> and{" "}
-            <span className="text-primary">Supabase</span>.
+            Built by <span className="text-primary">Jclinch Multimedia</span>
           </p>
         </div>
       </motion.div>

@@ -15,7 +15,7 @@ const PARTNERS: Partner[] = [
 
 export default function MarqueeLogos() {
   return (
-    <section className="my-8 bg-bg text-foreground z-50">
+    <section id="logos" className="my-8 bg-bg text-foreground z-50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="overflow-hidden relative">
           {/* Marquee strip */}
