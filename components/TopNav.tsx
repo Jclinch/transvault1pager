@@ -189,7 +189,9 @@ export default function TopNav() {
             variant="default"
             className="hidden md:inline-flex bg-primary hover:bg-accent text-white font-semibold shadow-lg"
           >
-            <Link href="/get-started">Get Started</Link>
+            <Link href="/#contact" passHref>
+              Get Started
+            </Link>
           </Button>
 
           <Button

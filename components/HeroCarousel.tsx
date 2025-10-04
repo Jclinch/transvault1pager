@@ -24,8 +24,8 @@ const SLIDES: Slide[] = [
     titleBottom: "for remittance & assets",
     subtitle: "Secure settlement, reconciliation, and bank-grade compliance.",
     ctas: [
-      { label: "Learn how we comply", href: "/compliance", variant: "primary" },
-      { label: "Talk to Sales", href: "/contact", variant: "secondary" },
+      { label: "Learn how we comply", href: "/#compliance", variant: "primary" },
+      { label: "Talk to Sales", href: "/#contact", variant: "secondary" },
     ],
   },
   {
@@ -34,8 +34,8 @@ const SLIDES: Slide[] = [
     titleBottom: "reconciled daily",
     subtitle: "Designated accounts, audit trails, and regulated bank payouts.",
     ctas: [
-      { label: "Read services", href: "/services", variant: "primary" },
-      { label: "Request demo", href: "/contact", variant: "secondary" },
+      { label: "Read services", href: "/#services", variant: "primary" },
+      { label: "Request demo", href: "/#contact", variant: "secondary" },
     ],
   },
   {
@@ -44,8 +44,8 @@ const SLIDES: Slide[] = [
     titleBottom: "and licensed IMTOs",
     subtitle: "Wallet APIs, KYC attach, transaction webhooks, and exports.",
     ctas: [
-      { label: "Integration docs", href: "/resources", variant: "primary" },
-      { label: "Talk to Sales", href: "/contact", variant: "secondary" },
+      { label: "Integration docs", href: "/#resources", variant: "primary" },
+      { label: "Talk to Sales", href: "/#contact", variant: "secondary" },
     ],
   },
 ];
