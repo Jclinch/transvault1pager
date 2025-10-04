@@ -92,7 +92,7 @@ export default function Partners() {
                                     </svg>
                                 </span>
                             )}
-                            <p className="text-sm text-foreground text-center font-black min-h-[48px] flex items-center justify-center">
+                            <p className="text-sm text-white text-center font-black min-h-[48px] flex items-center justify-center">
                                 {p.role}
                             </p>
                         </div>

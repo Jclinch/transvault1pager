@@ -11,14 +11,16 @@
    ============================ */
 :root {
   /* Light theme */
-  --color-primary: #7F2E7D;
-  --color-secondary: #735F6A;
-  --color-neutral: #A4A4A4;
-  --color-accent: #EFBF04;
-  --color-bright: #7f2e7e8b;
+  /* Light theme */
+--color-primary: #7F2E7D;  /* kept */
+--color-secondary: #4B3F72;  /* updated */
+--color-neutral: #6B7280;   /* updated */
+--color-accent: #00BFA6;    /* updated */
+--color-bright: #F8C537;    /* updated */
 
-  --color-bg: #F9F7FA;
-  --color-foreground: #1A141B;
+--color-bg: #F9F7FA; 
+--color-foreground: #1A141B;
+
 
   --font-sans: Arial, Helvetica, sans-serif;
   --font-mono: var(--font-geist-mono);
@@ -56,16 +58,19 @@
   --foreground: oklch(0.145 0 0);
 }
 
-.dark {
-  /* Dark theme */
-  --color-primary: #EFBF04;  
-  --color-secondary: #A4A4A4;
-  --color-neutral: #4FB3FF;  
-  --color-accent:   #ff38fc;   
-  --color-bright: #efc00496;   
 
-  --color-bg: #1A141B;
+  .dark {
+  /* Dark theme */
+  --color-primary: #7F2E7D;   /* keep brand consistency */
+  --color-secondary: #9F8FC1; /* lighter secondary purple */
+  --color-neutral: #94A3B8;   /* balanced gray-blue for fintech trust */
+  --color-accent: #00E6B8;    /* brightened teal for dark mode */
+  --color-bright: #FFD85C;    /* warmer highlight for visibility */
+
+  --color-bg: #1A141B; 
   --color-foreground: #F9F7FA;
+
+
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);

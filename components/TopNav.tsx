@@ -152,28 +152,28 @@ export default function TopNav() {
         <NavigationMenu className="hidden md:block">
           <NavigationMenuList className="flex gap-6">
             <NavigationMenuItem>
-              <Link href="/#services" legacyBehavior passHref>
+              <Link href="/#services" passHref>
                 <NavigationMenuLink className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
                   Services
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/#features" legacyBehavior passHref>
+              <Link href="/#features" passHref>
                 <NavigationMenuLink className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
                   Features
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/#partners" legacyBehavior passHref>
+              <Link href="/#partners" passHref>
                 <NavigationMenuLink className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
                   Partners
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/#contact" legacyBehavior passHref>
+              <Link href="/#contact" passHref>
                 <NavigationMenuLink className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
                   Contact
                 </NavigationMenuLink>
