@@ -27,9 +27,9 @@ export default function Footer() {
           </div>
 
           {/* Column 2 - Navigation */}
-          <div>
+          <div className="">
             <h4 className="text-sm font-semibold mb-3">Navigation</h4>
-            <ul className="space-y-2 text-sm">
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 space-y-2 md:space-y-0 text-sm">
               <li>
                 <Link
                   href="/#hero"
