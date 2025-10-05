@@ -218,10 +218,10 @@ export default function HeroCarousel() {
             alt="Hero Person"
             width={500}
             height={600}
-            className="object-cover z-20 ml-[-150px]"
+            className="object-cover z-20 ml-[-40px]"
           />
 
-          {/* Mini Cart */}
+          {/* Mini Cart
           <div className="absolute right-8  w-64 bg-white shadow-lg border overflow-hidden top-12 z-10">
             <div className="bg-lime-200 px-4 py-2 text-sm font-bold text-slate-800">
               Payments <span className="font-normal text-xs">powered by</span>{" "}
@@ -261,7 +261,7 @@ export default function HeroCarousel() {
                 </button>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

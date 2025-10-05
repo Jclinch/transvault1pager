@@ -140,7 +140,7 @@ export default function TopNav() {
           className="flex items-center text-xl font-bold text-primary dark:text-accent"
         >
           <Image
-            src="/logos/logo.jpg"
+            src="/logos/transvault.png"
             alt="Transvault Logo"
             width={90}
             height={45}
