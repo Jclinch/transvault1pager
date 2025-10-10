@@ -10,7 +10,6 @@ const PARTNERS: Partner[] = [
   { id: "p2", alt: "Partner 2", src: "/logos/logo2.png" },
   { id: "p3", alt: "Partner 3", src: "/logos/logo3.png" },
   { id: "p4", alt: "Partner 4", src: "/logos/logo4.png" },
-  { id: "p5", alt: "Partner 5", src: "/logos/logo1.png" },
   { id: "p6", alt: "Partner 6", src: "/logos/logo2.png" },
   // { id: "p5", alt: "Partner 5", src: "/logos/logo1.png" },
 ];
@@ -30,7 +29,7 @@ export default function MarqueeLogos() {
                 <Image
                   src={p.src}
                   alt={p.alt}
-                  width={200}
+                  width={220}
                   height={50}
                   className="h-20 md:h-24 object-contain opacity-90 hover:opacity-100 transition"
                 />
