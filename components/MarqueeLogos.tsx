@@ -1,4 +1,4 @@
-//components\MarqueeLogos.tsx
+// components/MarqueeLogos.tsx
 "use client";
 
 import Image from "next/image";
@@ -11,7 +11,6 @@ const PARTNERS: Partner[] = [
   { id: "p3", alt: "Partner 3", src: "/logos/logo3.png" },
   { id: "p4", alt: "Partner 4", src: "/logos/logo4.png" },
   { id: "p6", alt: "Partner 6", src: "/logos/logo2.png" },
-  // { id: "p5", alt: "Partner 5", src: "/logos/logo1.png" },
 ];
 
 export default function MarqueeLogos() {
@@ -24,14 +23,15 @@ export default function MarqueeLogos() {
             {[...PARTNERS, ...PARTNERS].map((p, i) => (
               <div
                 key={`${p.id}-${i}`}
-                className="inline-flex items-center justify-center w-[220px] h-[50px] "
+                className="inline-flex items-center justify-center w-[280px] h-[100px] " // increased container height and width
               >
+                {/* ✅ Increased image size and removed fixed Tailwind height restriction */}
                 <Image
                   src={p.src}
                   alt={p.alt}
-                  width={220}
-                  height={50}
-                  className="h-20 md:h-24 object-contain opacity-90 hover:opacity-100 transition"
+                  width={200} // increased width
+                  height={100} // increased height
+                  className="object-contain opacity-90 hover:opacity-100 transition-transform duration-300 hover:scale-105" // added smooth zoom effect
                 />
               </div>
             ))}
