@@ -152,32 +152,24 @@ export default function TopNav() {
         <NavigationMenu className="hidden md:block">
           <NavigationMenuList className="flex gap-6">
             <NavigationMenuItem>
-              <Link href="/#services" passHref>
-                <NavigationMenuLink className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
-                  Services
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink asChild className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
+                <Link href="/#services">Services</Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/#features" passHref>
-                <NavigationMenuLink className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
-                  Features
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink asChild className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
+                <Link href="/#features">Features</Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/#partners" passHref>
-                <NavigationMenuLink className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
-                  Partners
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink asChild className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
+                <Link href="/#partners">Partners</Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
-              <Link href="/#contact" passHref>
-                <NavigationMenuLink className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
-                  Contact
-                </NavigationMenuLink>
-              </Link>
+              <NavigationMenuLink asChild className="text-secondary hover:text-primary dark:text-neutral dark:hover:text-bright transition-colors">
+                <Link href="/#contact">Contact</Link>
+              </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
         </NavigationMenu>
