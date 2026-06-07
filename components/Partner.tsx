@@ -1,114 +1,72 @@
-// components/Partners.tsx
+// components/Partner.tsx
 "use client";
 
-// import Image from "next/image";
+import { Building2, CircleDollarSign, Globe2, Landmark } from "lucide-react";
 
-type Partner = {
-    id: string;
-    logo: string;
-    role: string;
-};
-
-const PARTNERS: Partner[] = [
-    {
-        id: "partner1",
-        logo: "/logos/bank1.png",
-        role: "Settlement Bank",
-    },
-    {
-        id: "partner2",
-        logo: "/logos/imto.png",
-        role: "International Money Transfer Operator (IMTO)",
-    },
-    {
-        id: "partner3",
-        logo: "/logos/crypto.png",
-        role: "Crypto Exchange (SEC-registered)",
-    },
-    {
-        id: "partner4",
-        logo: "/logos/msb.png",
-        role: "US Money Services Business (MSB)",
-    },
+const PARTNERS = [
+  {
+    role: "Settlement Bank",
+    detail: "Designated accounts and payout rails",
+    Icon: Landmark,
+  },
+  {
+    role: "International Money Transfer Operator",
+    detail: "Inbound remittance instructions",
+    Icon: Globe2,
+  },
+  {
+    role: "Crypto Exchange",
+    detail: "SEC-registered digital asset flows",
+    Icon: CircleDollarSign,
+  },
+  {
+    role: "US Money Services Business",
+    detail: "Cross-border partner structure",
+    Icon: Building2,
+  },
 ];
 
 export default function Partners() {
-    return (
-        <section id="partners" className="bg-bg pt-20 border-t border-neutral">
-            <div className="max-w-7xl mx-auto px-6">
-                {/* Header & Intro (left aligned) */}
-                <p className="text-sm font-semibold text-accent mb-2">Partners</p>
-                <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
-                    Trusted Partnerships
-                </h2>
-                <p className="text-secondary max-w-3xl mb-12">
-                    Transvault partners with licensed IMTOs, Nigerian commercial banks, an
-                    MSB in the USA and SEC-registered digital asset firms.
-                </p>
+  return (
+    <section id="partners" className="bg-white py-16 dark:bg-[#050914]">
+      <div className="w-full px-5 text-center sm:px-6 lg:px-10 xl:px-12">
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent">
+          Partners
+        </p>
+        <h2 className="mt-2 text-3xl font-semibold text-primary dark:text-white sm:text-xl">
+          Trusted Partnerships
+        </h2>
+        <p className="mx-auto mt-4 max-w-2xl text-sm leading-6 text-secondary dark:text-slate-300">
+          Transvault partners with licensed IMTOs, Nigerian commercial banks,
+          an MSB in the USA, and SEC-registered digital asset firms.
+        </p>
 
-                {/* Partner Grid */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-stretch mb-12">
-                    {PARTNERS.map((p) => (
-                        <div
-                            key={p.id}
-                            className="bg-neutral border border-primary/20 rounded-lg shadow-sm hover:shadow-md transition p-6 flex flex-col items-center justify-center min-h-[180px] h-full"
-                        >
-                            {/* Replace logos with icons */}
-                            {p.id === "partner1" && (
-                                <span className="mb-4 text-5xl text-primary">
-                                    {/* Bank icon */}
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48" width={48} height={48}>
-                                        <path stroke="currentColor" strokeWidth="3.5" d="M8 20v16m8-16v16m8-16v16m8-16v16M4 20l20-12 20 12M4 20h40M8 36h32" />
-                                    </svg>
-                                </span>
-                            )}
-                            {p.id === "partner2" && (
-                                <span className="mb-4 text-5xl text-primary">
-                                    {/* IMTO icon (globe) */}
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48" width={48} height={48}>
-                                        <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="3.5" />
-                                        <ellipse cx="24" cy="24" rx="10" ry="20" stroke="currentColor" strokeWidth="3.5" />
-                                        <line x1="4" y1="24" x2="44" y2="24" stroke="currentColor" strokeWidth="3.5" />
-                                    </svg>
-                                </span>
-                            )}
-                            {p.id === "partner3" && (
-                                <span className="mb-4 text-5xl text-primary">
-                                    {/* Crypto icon (currency) */}
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48" width={48} height={48}>
-                                        <circle cx="24" cy="24" r="20" stroke="currentColor" strokeWidth="3.5" />
-                                        <path d="M24 14v20M18 18h12M18 30h12" stroke="currentColor" strokeWidth="3.5" />
-                                    </svg>
-                                </span>
-                            )}
-                            {p.id === "partner4" && (
-                                <span className="mb-4 text-5xl text-primary">
-                                    {/* MSB icon (building) */}
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 48 48" width={48} height={48}>
-                                        <rect x="10" y="18" width="28" height="20" stroke="currentColor" strokeWidth="3.5" />
-                                        <rect x="18" y="26" width="4" height="6" stroke="currentColor" strokeWidth="3.5" />
-                                        <rect x="26" y="26" width="4" height="6" stroke="currentColor" strokeWidth="3.5" />
-                                        <path d="M10 18l14-10 14 10" stroke="currentColor" strokeWidth="3.5" />
-                                    </svg>
-                                </span>
-                            )}
-                            <p className="text-sm text-white text-center font-black min-h-[48px] flex items-center justify-center">
-                                {p.role}
-                            </p>
-                        </div>
-                    ))}
-                </div>
+        <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
+          {PARTNERS.map(({ role, detail, Icon }) => (
+            <article
+              key={role}
+              className="flex min-h-[168px] flex-col items-center justify-center rounded-lg border border-primary/10 bg-[#F8FAFF] p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md dark:border-white/10 dark:bg-white/[0.06]"
+            >
+              <span className="grid h-12 w-12 place-items-center rounded-md bg-bright/15 text-primary dark:bg-bright/10 dark:text-bright">
+                <Icon className="h-6 w-6" />
+              </span>
+              <h3 className="mt-5 text-sm font-bold uppercase tracking-[0.05em] text-primary dark:text-white">
+                {role}
+              </h3>
+              <p className="mt-2 text-xs leading-5 text-secondary dark:text-slate-300">
+                {detail}
+              </p>
+            </article>
+          ))}
+        </div>
 
-                {/* CTA (centered) */}
-                <div id="contact" className="text-center">
-                    <a
-                        href="mailto:partnerships@transvault.xyz"
-                        className="inline-block px-6 py-3 bg-accent text-white font-semibold rounded-md shadow hover:shadow-lg transition"
-                    >
-                        Become a partner — contact partnerships@transvault.xyz
-                    </a>
-                </div>
-            </div>
-        </section>
-    );
+        <a
+          href="mailto:partnerships@transvault.xyz"
+          className="mt-9 inline-flex min-h-10 items-center justify-center rounded-full bg-accent px-6 text-sm font-bold text-[#04110F] shadow-sm transition hover:translate-y-[-1px] hover:shadow-md"
+        >
+          Become a partner - partnerships@transvault.xyz
+        </a>
+      </div>
+    </section>
+  );
 }

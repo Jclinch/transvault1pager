@@ -1,60 +1,71 @@
 // components/HeroCarousel.tsx
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useSwipeable } from "react-swipeable";
-import { Button } from "@/components/ui/button"; // ✅ shadcn/ui button
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 type Slide = {
   id: string;
+  eyebrow: string;
   titleTop: string;
   titleBottom: string;
   subtitle: string;
-  image?: string;
+  proof: string;
   ctas: { label: string; href: string; variant?: "primary" | "secondary" }[];
 };
 
 const SLIDES: Slide[] = [
   {
     id: "slide-1",
-    titleTop: "Regulatory-first wallet",
-    titleBottom: "for remittance & assets",
-    subtitle: "Secure settlement, reconciliation, and bank-grade compliance.",
+    eyebrow: "Regulated payouts",
+    titleTop: "Integrate with SEC exchanges",
+    titleBottom: "and licensed IMTOs",
+    subtitle:
+      "Wallet APIs, KYC attach, transaction webhooks, and exports for compliant cross-border finance operations.",
+    proof: "Built for CBN, SEC, MSB, and regulated banking partner workflows.",
     ctas: [
-      { label: "Learn how we comply", href: "/#compliance", variant: "primary" },
+      { label: "Integration docs", href: "/#features", variant: "primary" },
       { label: "Talk to Sales", href: "/#contact", variant: "secondary" },
     ],
   },
   {
     id: "slide-2",
+    eyebrow: "Settlement control",
     titleTop: "Bank-grade settlement",
-    titleBottom: "reconciled daily",
-    subtitle: "Designated accounts, audit trails, and regulated bank payouts.",
+    titleBottom: "reconciled every day",
+    subtitle:
+      "Designated settlement accounts, transaction traceability, and regulator-ready export trails for every payout flow.",
+    proof: "Daily reconciliation across partner banks, IMTOs, and exchanges.",
     ctas: [
-      { label: "Read services", href: "/#services", variant: "primary" },
+      { label: "Explore services", href: "/#services", variant: "primary" },
       { label: "Request demo", href: "/#contact", variant: "secondary" },
     ],
   },
   {
     id: "slide-3",
-    titleTop: "Integrate with SEC exchanges",
-    titleBottom: "and licensed IMTOs",
-    subtitle: "Wallet APIs, KYC attach, transaction webhooks, and exports.",
+    eyebrow: "Compliance-first wallets",
+    titleTop: "Regulatory-first wallet",
+    titleBottom: "for remittance and assets",
+    subtitle:
+      "Launch controlled wallets and payout rails while keeping KYC, AML, custody, and reporting requirements close to the transaction.",
+    proof: "Designed for licensed entities, not informal payment operations.",
     ctas: [
-      { label: "Integration docs", href: "/#resources", variant: "primary" },
+      { label: "View controls", href: "/#compliance", variant: "primary" },
       { label: "Talk to Sales", href: "/#contact", variant: "secondary" },
     ],
   },
 ];
 
 export default function HeroCarousel() {
-  const [index, setIndex] = useState<number>(0);
+  const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState<"left" | "right">("right");
   const timeoutRef = useRef<number | null>(null);
-  const autoplayMs = 6000;
+  const autoplayMs = 6500;
 
   const next = () => {
     setDirection("right");
@@ -69,6 +80,7 @@ export default function HeroCarousel() {
   useEffect(() => {
     if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
     timeoutRef.current = window.setTimeout(next, autoplayMs);
+
     return () => {
       if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
     };
@@ -76,37 +88,63 @@ export default function HeroCarousel() {
 
   const variants = {
     enter: (dir: "left" | "right") => ({
-      x: dir === "right" ? 1000 : -1000,
+      x: dir === "right" ? 80 : -80,
       opacity: 0,
     }),
-    center: { x: 0, opacity: 1, transition: { duration: 0.6 } },
+    center: {
+      x: 0,
+      opacity: 1,
+      transition: { duration: 0.55, ease: "easeOut" as const },
+    },
     exit: (dir: "left" | "right") => ({
-      x: dir === "right" ? -1000 : 1000,
+      x: dir === "right" ? -80 : 80,
       opacity: 0,
-      transition: { duration: 0.6 },
+      transition: { duration: 0.35, ease: "easeIn" as const },
     }),
   };
 
   const swipeHandlers = useSwipeable({
-    onSwipedLeft: () => next(),
-    onSwipedRight: () => prev(),
+    onSwipedLeft: next,
+    onSwipedRight: prev,
     trackMouse: true,
   });
 
   return (
     <section
       id="hero"
-      aria-label="hero"
-      className="relative overflow-hidden bg-cover bg-center bg-[url('/hero/hero3.jpg')] dark:bg-[url('/hero/hero2.jpg')]"
+      aria-label="Transvault hero"
+      className="relative isolate overflow-hidden bg-[#050914] text-white"
       {...swipeHandlers}
     >
-  {/* Dark-mode faint overlay to improve contrast on the dark background image */}
-  <div className="absolute inset-0 bg-transparent dark:bg-black/40 z-10" />
+      <motion.div
+        aria-hidden="true"
+        initial={{ opacity: 0, x: -90 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+        className="absolute inset-y-0 -left-[18vw] -right-6"
+        style={{
+          maskImage:
+            "linear-gradient(90deg, transparent 0%, rgba(0,0,0,.32) 12%, rgba(0,0,0,.9) 28%, #000 100%)",
+          WebkitMaskImage:
+            "linear-gradient(90deg, transparent 0%, rgba(0,0,0,.32) 12%, rgba(0,0,0,.9) 28%, #000 100%)",
+        }}
+      >
+        <Image
+          src="/hero.jpg"
+          alt=""
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover object-center"
+        />
+      </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 min-h-[600px] lg:min-h-[700px] flex items-center relative">
-        {/* Left column */}
-        <div className="w-full lg:w-1/2 relative z-10 mt-[-120px]">
-          <AnimatePresence custom={direction} mode="popLayout">
+      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(5,9,20,.9)_0%,rgba(5,9,20,.72)_34%,rgba(5,9,20,.28)_68%,rgba(5,9,20,.58)_100%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_18%_24%,rgba(127,46,125,.36),transparent_36%),radial-gradient(circle_at_70%_74%,rgba(0,230,184,.18),transparent_32%)]" />
+
+      <div className="relative flex min-h-[calc(100vh-3.75rem)] w-full items-center px-5 py-[clamp(3rem,8vw,5rem)] sm:px-6 lg:px-10 xl:px-12">
+        <div className="max-w-2xl">
+          <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={SLIDES[index].id}
               custom={direction}
@@ -116,48 +154,26 @@ export default function HeroCarousel() {
               exit="exit"
               className="space-y-6"
             >
-              {/* ✅ Animated badge */}
-              <motion.p
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="inline-block rounded-full px-3 py-1 text-sm font-medium bg-[#EFBF04]/20 text-accent"
-              >
-                Regulated payouts
-              </motion.p>
+              <p className="inline-flex items-center rounded-full border border-accent/40 bg-accent/10 px-3 py-1 text-xs font-semibold uppercase tracking-[0.16em] text-accent">
+                {SLIDES[index].eyebrow}
+              </p>
 
-              {/* ✅ Animated headline */}
-              <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.3 }}
-                className="text-2xl lg:text-4xl font-semibold leading-tight text-white"
-              >
-                <span className="block text-primary">
-                  {SLIDES[index].titleTop}
-                </span>
-                <span className="block text-secondary">
+              <h1 className="max-w-2xl text-4xl font-semibold leading-[1.05] text-white sm:text-5xl lg:text-6xl">
+                <span className="block">{SLIDES[index].titleTop}</span>
+                <span className="block text-[#D9C7FF]">
                   {SLIDES[index].titleBottom}
                 </span>
-              </motion.h1>
+              </h1>
 
-              {/* ✅ Animated subtitle */}
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.4 }}
-                className="mt-2 text-base text-neutral max-w-xl"
-              >
+              <p className="max-w-xl text-base leading-7 text-slate-200 sm:text-lg">
                 {SLIDES[index].subtitle}
-              </motion.p>
+              </p>
 
-              {/* ✅ shadcn/ui Buttons */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: 0.5 }}
-                className="mt-6 flex gap-3"
-              >
+              <p className="max-w-lg border-l-2 border-accent/70 pl-4 text-sm leading-6 text-slate-300">
+                {SLIDES[index].proof}
+              </p>
+
+              <div className="flex flex-col gap-3 pt-2 sm:flex-row">
                 {SLIDES[index].ctas.map((cta) => (
                   <Button
                     key={cta.label}
@@ -165,103 +181,51 @@ export default function HeroCarousel() {
                     variant={cta.variant === "primary" ? "default" : "outline"}
                     className={
                       cta.variant === "primary"
-                        ? "bg-primary hover:bg-accent text-white shadow-lg"
-                        : "border-2 border-primary text-primary hover:bg-primary hover:text-white transition"
+                        ? "h-11 rounded-md bg-primary px-5 text-white shadow-[0_18px_40px_rgba(127,46,125,.35)] hover:bg-accent"
+                        : "h-11 rounded-md border-white/30 bg-white/[0.08] px-5 text-white backdrop-blur hover:bg-white/[0.16]"
                     }
                   >
                     <Link href={cta.href}>{cta.label}</Link>
                   </Button>
                 ))}
-              </motion.div>
+              </div>
             </motion.div>
           </AnimatePresence>
 
-          {/* Carousel controls */}
-          <div className="mt-6 flex items-center gap-3">
+          <div className="mt-9 flex items-center gap-3">
             <button
+              type="button"
               aria-label="Previous slide"
               onClick={prev}
-              className="p-2 rounded-full bg-white/80 border border-neutral text-primary hover:bg-accent hover:text-white"
+              className="grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:bg-white/20"
             >
-              ‹
+              <ChevronLeft className="h-4 w-4" />
             </button>
             <div className="flex gap-2">
-              {SLIDES.map((s, i) => (
+              {SLIDES.map((slide, i) => (
                 <button
-                  key={s.id}
+                  key={slide.id}
+                  type="button"
                   aria-label={`Go to slide ${i + 1}`}
                   onClick={() => {
                     setDirection(i > index ? "right" : "left");
                     setIndex(i);
                   }}
-                  className={`w-3 h-3 rounded-full ${
-                    i === index ? "bg-primary" : "bg-neutral"
+                  className={`h-2.5 rounded-full transition-all ${
+                    i === index ? "w-8 bg-accent" : "w-2.5 bg-white/[0.35]"
                   }`}
                 />
               ))}
             </div>
             <button
+              type="button"
               aria-label="Next slide"
               onClick={next}
-              className="p-2 rounded-full bg-white/80 border border-neutral text-primary hover:bg-accent hover:text-white"
+              className="grid h-9 w-9 place-items-center rounded-full border border-white/20 bg-white/10 text-white backdrop-blur transition hover:bg-white/20"
             >
-              ›
+              <ChevronRight className="h-4 w-4" />
             </button>
           </div>
-        </div>
-
-        {/* Right column (image & mini cart) kept unchanged ✅ */}
-        <div className="hidden lg:flex lg:w-1/2 relative justify-center items-center ml-[-60px] mt-[-30px]">
-          {/* ❌ Removed polygon background */}
-          <Image
-            src="/hero/lady2.png"
-            alt="Hero Person"
-            width={500}
-            height={600}
-            className="object-cover z-20 ml-[-40px]"
-          />
-
-          {/* Mini Cart
-          <div className="absolute right-8  w-64 bg-white shadow-lg border overflow-hidden top-12 z-10">
-            <div className="bg-lime-200 px-4 py-2 text-sm font-bold text-slate-800">
-              Payments <span className="font-normal text-xs">powered by</span>{" "}
-              <span className="text-primary font-semibold">Transvault</span>
-            </div>
-            <div className="p-4">
-              <div className="mb-3 ">
-                <Image
-                  src="/hero/lotion.webp"
-                  alt="Product"
-                  width={80}
-                  height={100}
-                  className="rounded-md mx-auto"
-                />
-                <p className="mt-2 text-sm text-secondary text-center">
-                  Body Lotion
-                </p>
-                <p className="text-base font-bold text-primary text-center">
-                  ₦ 455
-                </p>
-              </div>
-              <p className="text-xs text-slate-500 mb-2">
-                Select Payment Method
-              </p>
-              <div className="grid grid-cols-2 gap-2">
-                <button className="text-neutral px-3 py-2 border rounded-md text-sm text-left hover:bg-accent/10">
-                  Card
-                </button>
-                <button className="text-neutral px-3 py-2 border rounded-md text-sm text-left hover:bg-accent/10">
-                  UPI ID
-                </button>
-                <button className="text-neutral px-3 py-2 border rounded-md text-sm text-left hover:bg-accent/10">
-                  Netbanking
-                </button>
-                <button className="text-neutral px-3 py-2 border rounded-md text-sm text-left hover:bg-accent/10">
-                  EMI
-                </button>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </section>

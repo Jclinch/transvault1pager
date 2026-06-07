@@ -133,7 +133,7 @@ export default function TopNav() {
         transition-all duration-300
       "
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 py-3 flex justify-between items-center">
+      <div className="flex w-full items-center justify-between px-5 py-3 sm:px-6 lg:px-10 xl:px-12">
         {/* ✅ Logo */}
         <Link
           href="/"

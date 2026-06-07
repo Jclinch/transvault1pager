@@ -1,54 +1,52 @@
 // components/Compliance.tsx
 "use client";
 
-import React, { useState } from "react";
+import type { ComponentType, SVGProps } from "react";
+import { useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, easeInOut } from "framer-motion";
-import { ShieldCheck, FileText, Scale, Lock } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
+import { FileText, Lock, Scale, ShieldCheck } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-type Tab = {
+type ComplianceTab = {
   id: string;
   title: string;
-  subtitle?: string;
+  subtitle: string;
   desc: string;
   img: string;
-  Icon?: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  Icon: ComponentType<SVGProps<SVGSVGElement>>;
 };
 
-const TABS: Tab[] = [
+const TABS: ComplianceTab[] = [
   {
     id: "settlement",
     title: "Settlement & Pool Accounts",
     subtitle: "Designated bank settlement accounts",
-    desc:
-      "All customer balances are matched by funds held in designated settlement accounts with regulated banks, ensuring segregation and auditability.",
+    desc: "All customer obligations are matched by funds held in designated settlement accounts with regulated banks, supporting segregation, reconciliation, and auditability.",
     img: "/compliance/settlement.webp",
     Icon: ShieldCheck,
   },
   {
     id: "recon",
     title: "Reconciliation & Audit Trails",
-    subtitle: "Daily reconciliation",
-    desc:
-      "Automated daily reconciliation with immutable audit logs and regulator-ready reporting; data retained per regulator requirements.",
+    subtitle: "Daily operational controls",
+    desc: "Automated reconciliation joins partner instructions, wallet movements, bank confirmations, and exception handling into regulator-ready records.",
     img: "/compliance/Reconciliations.jpg",
     Icon: FileText,
   },
   {
     id: "aml",
     title: "KYC / AML & Reporting",
-    subtitle: "Know-your-customer checks",
-    desc:
-      "KYC onboarding (BVN where applicable), risk screening and SAR reporting to NFIU. Compliance exports available for CBN/SEC review.",
+    subtitle: "Customer and transaction checks",
+    desc: "KYC onboarding, risk screening, retained evidence, and reporting exports keep transaction context available for CBN, SEC, and partner review.",
     img: "/compliance/kyc.jpg",
     Icon: Scale,
   },
   {
     id: "privacy",
     title: "Data Protection & Custody",
-    subtitle: "Encryption & segregation",
-    desc:
-      "Bank-grade encryption, role-based access and segregation of client assets for SEC-registered integrations.",
+    subtitle: "Access control and segregation",
+    desc: "Role-based access, encryption practices, and segregated asset workflows support secure operations for regulated partner integrations.",
     img: "/compliance/data.jpg",
     Icon: Lock,
   },
@@ -57,154 +55,112 @@ const TABS: Tab[] = [
 export default function Compliance() {
   const [active, setActive] = useState(0);
   const [dir, setDir] = useState<"left" | "right">("right");
+  const activeTab = TABS[active];
+  const ActiveIcon = activeTab.Icon;
 
   const onTabClick = (index: number) => {
-    const safeIndex = Math.max(0, Math.min(index, TABS.length - 1));
-    setDir(safeIndex > active ? "right" : "left");
-    setActive(safeIndex);
+    setDir(index > active ? "right" : "left");
+    setActive(index);
   };
-
-  const panelVariants = {
-    enter: (d: "left" | "right") => ({
-      opacity: 0,
-      x: d === "right" ? 40 : -40,
-      scale: 0.98,
-    }),
-    center: {
-      opacity: 1,
-      x: 0,
-      scale: 1,
-      transition: { duration: 0.55, ease: easeInOut },
-    },
-    exit: (d: "left" | "right") => ({
-      opacity: 0,
-      x: d === "right" ? -40 : 40,
-      scale: 0.98,
-      transition: { duration: 0.45, ease: easeInOut },
-    }),
-  };
-
-  // ✅ Safe fallback object
-  const activeTab: Tab = TABS[active] ?? {
-    id: "fallback",
-    title: "",
-    subtitle: "",
-    desc: "",
-    img: "/placeholder.jpg", // optional placeholder
-    Icon: ShieldCheck,
-  };
-
-  const ActiveIcon = activeTab.Icon || ShieldCheck;
 
   return (
-    <section id="compliance" className="bg-bg py-16 sm:py-20">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* header */}
-        <p className="text-sm font-semibold text-accent mb-2">Compliance</p>
-        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-primary mb-6">
+    <section
+      id="compliance"
+      className="bg-[#DDEAFF] py-16 dark:bg-[#30384E] sm:py-20"
+    >
+      <div className="w-full px-5 sm:px-6 lg:px-10 xl:px-12">
+        <p className="text-xs font-bold uppercase tracking-[0.18em] text-accent">
+          Compliance
+        </p>
+        <h2 className="mt-2 text-3xl font-semibold text-primary dark:text-white sm:text-xl">
           Regulation & Controls
         </h2>
-        <p className="text-secondary max-w-3xl mb-8 text-sm sm:text-base">
-          Transvault operates within the CBN and SEC regulatory frameworks by
-          partnering with licensed IMTOs and regulated banks, implementing robust
-          KYC, AML, reconciliation and custody controls.
+        <p className="mt-4 max-w-3xl text-sm leading-6 text-secondary dark:text-slate-200">
+          Transvault operates within CBN and SEC regulatory frameworks by
+          partnering with licensed IMTOs and regulated banks, implementing
+          robust KYC, AML, reconciliation and custody controls.
         </p>
 
-        {/* Tabs */}
-        <div className="mb-6 border-b border-neutral">
-          <div
-            role="tablist"
-            aria-label="Compliance tabs"
-            className="flex gap-6 sm:gap-8 overflow-x-auto whitespace-nowrap pb-2"
-          >
-            {TABS.map((t, i) => (
-              <button
-                key={t.id}
-                role="tab"
-                aria-selected={i === active}
-                onClick={() => onTabClick(i)}
-                className={`relative pb-3 text-xs sm:text-sm font-semibold transition ${
-                  i === active
-                    ? "text-primary"
-                    : "text-neutral hover:text-primary"
-                }`}
-              >
-                {t.title}
-                {i === active && (
-                  <motion.span
-                    layoutId="compliance-underline"
-                    className="absolute left-0 right-0 -bottom-[1px] h-[2px] sm:h-[3px] bg-accent rounded"
-                  />
-                )}
-              </button>
-            ))}
-          </div>
+        <div
+          role="tablist"
+          aria-label="Compliance tabs"
+          className="mt-8 flex gap-6 overflow-x-auto border-b border-primary/20 pb-2 dark:border-white/15"
+        >
+          {TABS.map((tab, index) => (
+            <button
+              key={tab.id}
+              type="button"
+              role="tab"
+              aria-selected={index === active}
+              onClick={() => onTabClick(index)}
+              className={cn(
+                "relative min-w-fit pb-3 text-xs font-semibold transition sm:text-sm",
+                index === active
+                  ? "text-primary dark:text-white"
+                  : "text-secondary hover:text-primary dark:text-slate-300 dark:hover:text-white"
+              )}
+            >
+              {tab.title}
+              {index === active && (
+                <motion.span
+                  layoutId="compliance-underline"
+                  className="absolute inset-x-0 -bottom-[9px] h-0.5 rounded-full bg-accent"
+                />
+              )}
+            </button>
+          ))}
         </div>
 
-        {/* Image + text box */}
-        <div className="rounded-lg overflow-hidden border border-primary/20 shadow-sm">
-          <div className="relative h-[280px] sm:h-[360px] md:h-[480px]">
-            <AnimatePresence initial={false} custom={dir}>
+        <div className="mt-7 overflow-hidden rounded-lg border border-primary/10 bg-white/[0.35] shadow-sm dark:border-white/10 dark:bg-white/[0.06]">
+          <div className="relative h-[330px] sm:h-[400px] lg:h-[430px]">
+            <AnimatePresence initial={false} custom={dir} mode="wait">
               <motion.div
                 key={activeTab.id}
                 custom={dir}
-                variants={panelVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                className="absolute inset-0 flex flex-col md:block"
+                initial={{ opacity: 0, x: dir === "right" ? 32 : -32 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: dir === "right" ? -32 : 32 }}
+                transition={{ duration: 0.35 }}
+                className="absolute inset-0"
               >
-                {/* background image */}
-                <div className="relative w-full h-[180px] sm:h-[220px] md:h-full">
-                  <Image
-                    src={activeTab.img}
-                    alt={activeTab.title}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-bg/40 via-bg/10 to-transparent pointer-events-none" />
-                </div>
+                <Image
+                  src={activeTab.img}
+                  alt={activeTab.title}
+                  fill
+                  sizes="100vw"
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#DDEAFF]/90 via-[#DDEAFF]/45 to-transparent dark:from-[#06101E]/88 dark:via-[#06101E]/45" />
 
-                {/* text box */}
-                <div className="relative md:absolute md:inset-y-0 md:left-0 flex items-center">
-                  <motion.div
-                    key={`text-${activeTab.id}`}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -12 }}
-                    transition={{ duration: 0.45 }}
-                    className="max-w-full md:max-w-[560px] w-full bg-white/95 backdrop-blur-sm p-4 sm:p-6 m-4 md:m-6 rounded-md shadow-lg border border-primary/10"
-                  >
-                    <div className="flex items-start gap-3 sm:gap-4">
-                      <div className="p-2 sm:p-3 rounded-md bg-accent/10 text-accent shrink-0">
-                        <ActiveIcon className="w-5 h-5 sm:w-6 sm:h-6" />
-                      </div>
+                <div className="absolute inset-x-4 bottom-4 sm:inset-auto sm:bottom-8 sm:left-8 sm:w-[460px]">
+                  <div className="rounded-md border border-white/40 bg-white/[0.86] p-5 shadow-xl backdrop-blur-md dark:border-white/10 dark:bg-[#071224]/90">
+                    <div className="flex gap-4">
+                      <span className="grid h-10 w-10 shrink-0 place-items-center rounded-md bg-accent/10 text-accent">
+                        <ActiveIcon className="h-5 w-5" />
+                      </span>
                       <div>
-                        <h3 className="text-lg sm:text-xl font-semibold text-primary">
+                        <h3 className="text-lg font-semibold text-primary dark:text-white">
                           {activeTab.title}
                         </h3>
-                        {activeTab.subtitle && (
-                          <p className="text-xs sm:text-sm text-secondary mt-1">
-                            {activeTab.subtitle}
-                          </p>
-                        )}
-                        <p className="text-xs sm:text-sm text-accent mt-3">
+                        <p className="mt-1 text-xs font-semibold text-secondary dark:text-slate-300">
+                          {activeTab.subtitle}
+                        </p>
+                        <p className="mt-3 text-sm leading-6 text-secondary dark:text-slate-200">
                           {activeTab.desc}
                         </p>
                       </div>
                     </div>
-                  </motion.div>
+                  </div>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
         </div>
 
-        {/* disclaimer */}
-        <p className="text-xs text-neutral mt-6">
-          Transvault is a technology & payment execution partner. Customer funds
-          are maintained in designated settlement accounts with regulated banks.
+        <p className="mt-5 text-center text-xs text-secondary dark:text-slate-300">
+          Transvault is a technology and payment execution partner. Customer
+          funds are maintained in designated settlement accounts with regulated
+          banks.
         </p>
       </div>
     </section>

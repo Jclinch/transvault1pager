@@ -8,8 +8,6 @@ import HeroCarousel from "@/components/HeroCarousel";
 import MarqueeLogos from "@/components/MarqueeLogos";
 import Partners from "@/components/Partner";
 import TabScroller from "@/components/ScrollSwapTabs";
-import Services from "@/components/Services";
-// import ScrollSwapTabs from "@/components/ScrollSwapTabs";
 import TopNav from "@/components/TopNav";
 
 export const metadata = {
@@ -29,8 +27,6 @@ export default function HomePage() {
       <Partners />
       <Contact />
       <Footer />
-
-     
     </main>
   );
 }
