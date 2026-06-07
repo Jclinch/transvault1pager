@@ -74,7 +74,7 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col gap-3 border-t border-primary/10 pt-6 text-xs text-secondary dark:border-white/10 dark:text-slate-400 sm:flex-row sm:items-center sm:justify-between">
           <p>© {new Date().getFullYear()} Transvault. All rights reserved.</p>
-          <p>Built by Jclinch Multimedia</p>
+          <p>Built by Jclinch Technologies Ltd</p>
         </div>
       </div>
     </footer>
